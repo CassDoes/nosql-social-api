@@ -16,11 +16,11 @@ const reactionSchema = new Schema(
       type: String,
       required: true
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: createdAtVal => dateFormat(createdAtVal)
-    }
+    // createdAt: {
+    //   type: Date,
+    //   default: Date.now,
+    //   get: createdAtVal => dateFormat(createdAtVal)
+    // }
   },
   {
     toJSON: {
@@ -37,11 +37,11 @@ const thoughtSchema = new Schema (
       minlength: 1,
       maxlength: 280
     },
-    createdAt: {
-      type: Date,
-      default: dateFormat.now,
-      get: (createdAtVal) => dateFormat(createdAtVal)
-    },
+    // createdAt: {
+    //   type: Date,
+    //   default: dateFormat.now,
+    //   get: (createdAtVal) => dateFormat(createdAtVal)
+    // },
     username: {
       type: String,
       required: true

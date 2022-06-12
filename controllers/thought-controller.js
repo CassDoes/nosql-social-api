@@ -11,15 +11,10 @@ const thoughtController = {
           {new: true});
     })
     .then(dbThoughtData => {
-        if(!dbThoughtData) {
-            res.status(404).json({message: 'No thoughts with this ID!'});
-            return;
-        }
         res.json(dbThoughtData)
     })
     .catch(err => res.json(err)); 
   },
-
   
   getAllThoughts(req, res) {
     Thought.find({})
@@ -33,7 +28,7 @@ const thoughtController = {
   },
 
   getThoughtById({params}, res) {
-    Thought.findOne({ _id: params.id })
+    Thought.findOne({ _id: params.thoughtId })
       .populate({path: 'reactions',select: '-__v'})
       .select('-__v')
       .then(dbThoughtData => {
@@ -50,7 +45,7 @@ const thoughtController = {
   },
 
   updateThought({params, body}, res) {
-    Thought.findOneAndUpdate({_id: params.id}, body,)
+    Thought.findOneAndUpdate({_id: params.thoughtId}, body,)
       .populate({path: 'reactions', select: '-__v'})
       .select('-___v')
       .then(dbThoughtData => {
@@ -64,7 +59,7 @@ const thoughtController = {
   },
 
   deleteThought({params}, res) {
-    Thought.findOneAndDelete({_id: params.id})
+    Thought.findOneAndDelete({_id: params.thoughtId})
       .then(dbThoughtData => {
         if (!dbThoughtData) {
           res.status(404).json({message: 'No thoughts with this ID!'});
